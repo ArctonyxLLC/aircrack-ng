@@ -724,7 +724,8 @@ static void clean_exit(int ret)
 		if (opt.dictfinish || wepkey_crack_success || wpa_wordlists_done
 			|| nb_tried == opt.wordcount)
 		{
-			ac_session_destroy(cracking_session);
+			// TODO: Figure out which of these conditions is incorrectly true when stopping with ctrl-c
+			//ac_session_destroy(cracking_session);
 		}
 		ac_session_free(&cracking_session);
 	}
