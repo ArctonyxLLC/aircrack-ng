@@ -984,9 +984,9 @@ static void session_save_thread(void * arg)
 
 	while (!close_aircrack)
 	{
-		// Check if we're over the 10 minutes mark
+		// Check if we're over the 1 minute mark
 		gettimeofday(&stop, NULL);
-		if (stop.tv_sec - start.tv_sec < 10 * 60)
+		if (stop.tv_sec - start.tv_sec < 1 * 60)
 		{
 			// Wait 100ms
 			if (usleep(100000) == -1)
