@@ -6810,12 +6810,6 @@ int main(int argc, char * argv[])
 
 			memcpy(opt.bssid, ap_cur->bssid, ETHER_ADDR_LEN);
 
-			// Copy BSSID to the cracking session
-			if (cracking_session && opt.dict != NULL)
-			{
-				memcpy(cracking_session->bssid, ap_cur->bssid, ETHER_ADDR_LEN);
-			}
-
 			/* Disable PTW if dictionary used in WEP */
 			if (ap_cur->crypt == 2 && opt.dict != NULL)
 			{
@@ -6928,6 +6922,12 @@ int main(int argc, char * argv[])
 			   (opt.essid_set) ? "essid" : "bssid");
 
 		goto exit_main;
+	}
+
+	// Copy BSSID of the network we are targeting to the cracking session
+	if (cracking_session && opt.dict != NULL)
+	{
+		memcpy(cracking_session->bssid, ap_cur->bssid, ETHER_ADDR_LEN);
 	}
 
 	if (ap_cur->crypt < 2)
