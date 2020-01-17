@@ -6589,7 +6589,7 @@ int main(int argc, char * argv[])
 		goto __start;
 	}
 
-	if (!opt.bssid_set)
+	if (!opt.bssid_set || restore_session)
 	{
 		if (!opt.is_quiet)
 		{
