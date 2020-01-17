@@ -5776,6 +5776,8 @@ int main(int argc, char * argv[])
 	int old = 0;
 	char essid[ESSID_LENGTH + 1];
 	int restore_session = 0;
+	unsigned char session_wordlist_id = 0;
+	int64_t session_wordlist_pos = 0;
 	int nbarg = argc;
 	access_points = c_avl_create(station_compare);
 	targets = c_avl_create(station_compare);
@@ -5876,6 +5878,10 @@ int main(int argc, char * argv[])
 		nbarg = cracking_session->argc;
 		printf("Restoring session\n");
 		restore_session = 1;
+		// Save these values so they can be restored later.
+		// Other parts of the startup process overwrite them in cracking_session.
+		session_wordlist_id = cracking_session->wordlist_id;
+		session_wordlist_pos = cracking_session->pos;
 	}
 
 	while (1)
@@ -6660,6 +6666,9 @@ int main(int argc, char * argv[])
 			memcpy(opt.bssid, ap_cur->bssid, ETHER_ADDR_LEN);
 			opt.bssid_set = 1;
 
+			// Restore the loaded wordlist id that was reset when checking all of the passed wordlists
+			cracking_session->wordlist_id = session_wordlist_id;
+
 			// Set wordlist
 			if (next_dict(cracking_session->wordlist_id))
 			{
@@ -6667,6 +6676,9 @@ int main(int argc, char * argv[])
 						"Failed setting wordlist ID from restore session.\n");
 				clean_exit(EXIT_FAILURE);
 			}
+
+			// Restore position reset by previous calls to next_dict
+			cracking_session->pos = session_wordlist_pos;
 
 			// Move into position in the wordlist
 			if (fseeko(opt.dict, cracking_session->pos, SEEK_SET) != 0
