@@ -74,6 +74,9 @@ TESTS += %D%/test-hex_string_to_array.sh \
 		 %D%/test-aircrack-ng-0018.sh \
 		 %D%/test-aircrack-ng-0019.sh \
 		 %D%/test-aircrack-ng-0021.sh \
+		 %D%/test-aircrack-ng-0022.sh \
+		 %D%/test-aircrack-ng-0023.sh \
+		 %D%/test-aircrack-ng-0024.sh \
 		 %D%/test-airdecap-ng-0001.sh \
 		 %D%/test-airdecap-ng-0002.sh \
 		 %D%/test-airdecap-ng-0003.sh \
@@ -131,6 +134,9 @@ EXTRA_DIST += %D%/test-hex_string_to_array.sh \
 			  %D%/test-aircrack-ng-0018.sh \
 			  %D%/test-aircrack-ng-0019.sh \
 			  %D%/test-aircrack-ng-0021.sh \
+			  %D%/test-aircrack-ng-0022.sh \
+			  %D%/test-aircrack-ng-0023.sh \
+			  %D%/test-aircrack-ng-0024.sh \
 			  %D%/test-airdecap-ng-0001.sh \
 			  %D%/test-airdecap-ng-0002.sh \
 			  %D%/test-airdecap-ng-0003.sh \
